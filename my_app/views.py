@@ -12,3 +12,7 @@ def about(request):
 def horse_index(request):
     horses = Horse.objects.all()
     return render(request, 'horses/index.html', {'horses': horses})
+
+def horse_detail(request, horse_id):
+    horse = Horse.objects.get(id=horse_id)
+    return render(request, 'horses/detail.html', {'horse': horse})

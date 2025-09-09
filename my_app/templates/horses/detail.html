@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/horses/horse-detail.css' %}" />
+{% endblock %} 
+{% block content %}
+<section class="cat-container">
+  <div class="cat-img">
+    {% comment %} <img src="{% static 'images/sk8r-boi-cat.svg' %}" alt="A skater boy cat" /> {% endcomment %}
+  </div>
+  <div class="cat-details">
+    <h1>{{ horse.name }}</h1>
+    {% if horse.age > 0 %}
+      <h2>A {{ horse.age }} year old {{ horse.breed }}</h2>
+    {% else %}
+      <h2>A {{ horse.breed }} foal.</h2>
+    {% endif %}
+    <p>{{ horse.description }}</p>
+  </div>
+</section>
+{% endblock %}
