@@ -6,9 +6,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="" /> 
-    {% comment %} add text to href for image later like '{% static 'images/xyz.svg' %}' {% endcomment %}
-    <title>♞ Horse Barn</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/barn.png' %}" /> 
+    <title> Horse Barn</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block head %} 
     {% endblock %}
@@ -17,14 +16,13 @@
     <header>
       <div class="header-logo-container">
         <a href="/">
-          <img src="" alt="The Horse Barn Logo" />
-              {% comment %} add text to src for image later like '{% static 'images/xyz-header-logo.svg' %}' {% endcomment %}
+          <img src="{% static 'images/Barn.png' %}" alt="Classic Red Horse Barn"/>
         </a>
       </div>
       <nav>
         <ul>
             <li><a href="{% url 'horse-index' %}">All Horses</a></li>
-            <li><a href="{% url 'horse-create' %}"> Add a Horse</a></li>
+            <li><a href="{% url 'horse-create' %}">Add a Horse</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
         </ul>
       </nav>
