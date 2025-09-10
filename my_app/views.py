@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Horse
 
 # Create your views here.
@@ -16,3 +17,16 @@ def horse_index(request):
 def horse_detail(request, horse_id):
     horse = Horse.objects.get(id=horse_id)
     return render(request, 'horses/detail.html', {'horse': horse})
+
+class HorseCreate(CreateView):
+    model = Horse
+    fields = '__all__'
+    # success_url = '/horses/'
+
+class HorseUpdate(UpdateView):
+    model = Horse
+    fields = ['breed', 'description', 'age', 'nickname']
+
+class HorseDelete(DeleteView):
+    model = Horse
+    success_url = '/horses/'

@@ -8,6 +8,7 @@
   <div class="cat-img">
     {% comment %} <img src="{% static 'images/sk8r-boi-cat.svg' %}" alt="A skater boy cat" /> {% endcomment %}
   </div>
+  
   <div class="cat-details">
     <h1>{{ horse.name }}</h1>
     {% if horse.age > 0 %}
@@ -16,6 +17,10 @@
       <h2>A {{ horse.breed }} foal.</h2>
     {% endif %}
     <p>{{ horse.description }}</p>
+    <div class ='horse-actions'>
+      <a href='{% url 'horse-update' horse.id %}' class='btn warn'>Edit</a>
+      <a href='{% url 'horse-delete' horse.id %}' class='btn danger'>Delete</a>
+    </div>
   </div>
 </section>
 {% endblock %}
