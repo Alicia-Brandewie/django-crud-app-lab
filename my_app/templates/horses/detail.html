@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/horses/horse-detail.css' %}" />
 {% endblock %} 
 {% block content %}
+
 <section class="cat-container">
   <div class="cat-img">
       <img  src="{% static 'images/horse_257449.png' %}" alt="A fancy horse"/>
@@ -17,7 +18,7 @@
       <h2>A {{ horse.breed }} foal.</h2>
     {% endif %}
     <p>{{ horse.description }}</p>
-    <div class ='horse-actions'>
+    <div class ='cat-actions'>
       <a href='{% url 'horse-update' horse.id %}' class='btn warn'>Edit</a>
       <a href='{% url 'horse-delete' horse.id %}' class='btn danger'>Delete</a>
     </div>

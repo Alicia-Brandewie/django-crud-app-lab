@@ -50,6 +50,9 @@ body {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
   width: 100%;
   background: var(--nav-bg-ff); /* rgba(104, 197, 248, .9) */
   border-bottom: var(--borders);
@@ -254,7 +257,7 @@ nav li {
   .header-logo-container {
     /* visual fix to help align logo */
     padding-top: 6px;
-    width: 256px;
+    width: 60px;
     height: 35px;
   }
 
@@ -270,5 +273,11 @@ nav li {
       -webkit-backdrop-filter: blur(3px);
       backdrop-filter: blur(3px);
     }
+  }
+
+  img {
+    max-width: 100%;
+    max-height:100%;
+    display: block;
   }
 }

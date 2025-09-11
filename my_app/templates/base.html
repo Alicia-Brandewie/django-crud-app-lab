@@ -14,11 +14,12 @@
   </head>
   <body>
     <header>
+      <a href="/">
       <div class="header-logo-container">
-        <a href="/">
-          <img src="{% static 'images/Barn.png' %}" alt="Classic Red Horse Barn"/>
-        </a>
+          <img src="{% static 'images/Barn.png' %}" alt="Classic Red Horse Barn"/>        
       </div>
+      </a>
+
       <nav>
         <ul>
             <li><a href="{% url 'horse-index' %}">All Horses</a></li>

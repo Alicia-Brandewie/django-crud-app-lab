@@ -21,7 +21,7 @@ class Horse(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('horse-detail', kwargs={"pk": self.pk})
+        return reverse('horse-detail', kwargs={"horse_id": self.pk})
 
 class Feeding(models.Model):
     date = models.DateField('Feeding date')

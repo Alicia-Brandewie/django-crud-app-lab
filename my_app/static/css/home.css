@@ -15,8 +15,12 @@ main > section {
   flex-direction: column;
 }
 
+h1 {
+  font-size: 60pt;
+}
+
 .header-logo-container {
-  display: none;
+  display: flexbox;
 }
 
 .logo-container {
