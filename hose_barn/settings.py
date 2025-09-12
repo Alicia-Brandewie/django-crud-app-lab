@@ -126,3 +126,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Variable to specify where successful logins should redirect to
 LOGIN_REDIRECT_URL = 'horse-index'
 LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'home'

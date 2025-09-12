@@ -5,6 +5,8 @@ from .forms import FeedingForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -17,10 +19,12 @@ class Home(LoginView):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def horse_index(request):
-    horses = Horse.objects.all()
+    horses = Horse.objects.filter(user=request.user)
     return render(request, 'horses/index.html', {'horses': horses})
 
+@login_required
 def horse_detail(request, horse_id):
     horse = Horse.objects.get(id=horse_id)
     return render(request, 'horses/detail.html', {
@@ -28,7 +32,7 @@ def horse_detail(request, horse_id):
     })
 
 
-class HorseCreate(CreateView):
+class HorseCreate(LoginRequiredMixin, CreateView):
     model = Horse
     fields = ['name', 'breed','description', 'age', 'nickname']
     # success_url = '/horses/'
@@ -37,14 +41,15 @@ class HorseCreate(CreateView):
         return super().form_valid(form)
     
 
-class HorseUpdate(UpdateView):
+class HorseUpdate(LoginRequiredMixin, UpdateView):
     model = Horse
     fields = ['breed', 'description', 'age', 'nickname']
 
-class HorseDelete(DeleteView):
+class HorseDelete(LoginRequiredMixin, DeleteView):
     model = Horse
     success_url = '/horses/'
 
+@login_required
 def add_feeding(request, horse_id):
     form = FeedingForm(request.POST)
     if form.is_valid():

@@ -11,4 +11,5 @@ urlpatterns = [
     path('horses/<int:pk>/update/', views.HorseUpdate.as_view(), name='horse-update'),
     path('horses/<int:pk>/delete/', views.HorseDelete.as_view(), name='horse-delete'),
     path('horses/<int:horse_id>/add-feeding/', views.add_feeding, name='add-feeding'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]
