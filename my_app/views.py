@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Horse
+from .models import Horse, Feeding
 from .forms import FeedingForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
@@ -57,6 +57,42 @@ def add_feeding(request, horse_id):
         new_feeding.horse_id = horse_id
         new_feeding.save()
     return redirect('horse-detail', horse_id=horse_id)
+
+@login_required
+def update_feeding(request, horse_id):
+    form = FeedingForm(request.POST)
+    if form.is_valid():
+        update_feeding = form.save(commit=False)
+        update_feeding.horse_id = horse_id
+        update_feeding.save()
+    return redirect('horse-detail', horse_id=horse_id)
+
+
+class FeedingCreate(LoginRequiredMixin, CreateView):
+    model= Feeding
+    fields='__all__'
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
+class FeedingUpdate(LoginRequiredMixin, UpdateView):
+    model = Horse
+    fields ='__all__'
+
+class FeedingDelete(LoginRequiredMixin, UpdateView):
+    model = Horse
+    success_url = 'horses/<int:horse_id>/'
+
+
+@login_required
+def delete_feeding(request, horse_id):
+    form = FeedingForm(request.DELETE)
+    if form.is_valid():
+        delete_feeding = form.save(commit=False)
+        delete_feeding.horse_id = horse_id
+        delete_feeding.save()
+    return redirect('horse-detail', horse_id=horse_id)
+
 
 def signup(request):
     error_message = ''

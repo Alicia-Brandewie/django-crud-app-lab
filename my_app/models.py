@@ -40,3 +40,6 @@ class Feeding(models.Model):
     
     class Meta:
         ordering = ['-date']
+
+    def get_absolute_url(self):
+        return reverse('feeding-detail', kwargs={'pk': self.id})
