@@ -6,7 +6,15 @@
 {% block content %}
   <div class="page-header">
     {% if object %}
-      <h1>Edit {{object.name}}</h1>
+      <h1>Edit {{object.horse.name}}'s {{object.date}} feeding?</h1>
+      <img
+        src="{% static 'images/hay_8849969.png' %}"
+        alt="Hay is for horses"
+      />
+      <img 
+        src="{% static 'images/carrot_1860544.png' %}" 
+        alt="Carrot" 
+      />
     {% else %}
       <h1>Add a feeding</h1>
     {% endif %}

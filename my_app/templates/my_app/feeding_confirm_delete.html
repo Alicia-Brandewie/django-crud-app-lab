@@ -1,16 +1,24 @@
 {% extends 'base.html' %} 
 {% load static %} 
+<link rel="stylesheet" href="{% static 'css/horses/horse-detail.css' %}" />
+
 {% block content %}
 
 <div class="page-header">
-  <h1>Delete Feeding?</h1>
-  <img src="{% static 'images/nerd-cat.svg' %}" alt="A cat using a computer" />
+      <h2>Are you sure you want to delete {{object.horse.name}}'s {{object.date}} feeding?</h2>
+      <img
+        src="{% static 'images/hay_8849969.png' %}"
+        alt="Hay is for horses"
+      />
+      <img 
+        src="{% static 'images/carrot_1860544.png' %}" 
+        alt="Carrot" 
+      />
 </div>
-<h2>Are you sure you want to delete {{ object.name }}?</h2>
 
 <form action="" method="post" class="form">
   {% csrf_token %}
-  <a href="{% url 'toy-detail' toy.id %}" class="btn secondary"> Cancel </a>
+  <a href="{% url 'horse-detail' horse_id=object.horse.pk %}" class="btn secondary"> Cancel </a>
   <button type="submit" class="btn danger">Yes - Delete!</button>
 </form>
 

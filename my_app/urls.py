@@ -13,8 +13,8 @@ urlpatterns = [
     path('horses/<int:horse_id>/add-feeding/', views.add_feeding, name='add-feeding'),
 
     path('feeding/create/', views.FeedingCreate.as_view(), name='feeding-create'),
-    path('feeding/<int:pk>/update-feeding/', views.FeedingUpdate.as_view(), name='feeding-update'),
-    path('feeding/<int:pk>/delete-feeding/', views.FeedingDelete.as_view(), name='feeding-delete'),
+    path('feeding/<int:pk>/update/', views.FeedingUpdate.as_view(), name='feeding-update'),
+    path('feeding/<int:pk>/delete/', views.FeedingDelete.as_view(), name='feeding-delete'),
 
     path('accounts/signup/', views.signup, name='signup'),
 ]

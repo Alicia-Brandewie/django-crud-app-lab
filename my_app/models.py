@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -40,6 +40,3 @@ class Feeding(models.Model):
     
     class Meta:
         ordering = ['-date']
-
-    def get_absolute_url(self):
-        return reverse('feeding-detail', kwargs={'pk': self.id})

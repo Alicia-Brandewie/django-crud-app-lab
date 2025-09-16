@@ -65,8 +65,8 @@
             <td>{{feeding.date}}</td>
             <td>{{feeding.get_meal_display}}</td>
             <td>
-              <a href="{% url 'feeding-update' horse.id %}" class='btn warn'>Edit</a>
-              <a href="{% url 'feeding-delete' horse.id %}" class='btn danger'>Delete</a>
+              <a href='{% url 'feeding-update' feeding.id %}' class='btn warn'>Edit</a>
+              <a href='{% url 'feeding-delete' feeding.id %}' class='btn danger'>Delete</a>
             </td>      
           </tr>
           {% endfor %}

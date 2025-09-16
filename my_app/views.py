@@ -7,6 +7,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 
 # Create your views here.
@@ -58,40 +59,28 @@ def add_feeding(request, horse_id):
         new_feeding.save()
     return redirect('horse-detail', horse_id=horse_id)
 
-@login_required
-def update_feeding(request, horse_id):
-    form = FeedingForm(request.POST)
-    if form.is_valid():
-        update_feeding = form.save(commit=False)
-        update_feeding.horse_id = horse_id
-        update_feeding.save()
-    return redirect('horse-detail', horse_id=horse_id)
-
-
 class FeedingCreate(LoginRequiredMixin, CreateView):
-    model= Feeding
+    model = Feeding
     fields='__all__'
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
     
 class FeedingUpdate(LoginRequiredMixin, UpdateView):
-    model = Horse
-    fields ='__all__'
+    model = Feeding
+    fields =['date', 'meal']
+    # redirect('horse-detail', horse_id=horse_id)
 
-class FeedingDelete(LoginRequiredMixin, UpdateView):
-    model = Horse
-    success_url = 'horses/<int:horse_id>/'
+    def get_success_url(self):
+        horse_pk = self.object.horse.pk
+        return reverse('horse-detail', kwargs={'horse_id': horse_pk})
 
+class FeedingDelete(LoginRequiredMixin, DeleteView):
+    model = Feeding
 
-@login_required
-def delete_feeding(request, horse_id):
-    form = FeedingForm(request.DELETE)
-    if form.is_valid():
-        delete_feeding = form.save(commit=False)
-        delete_feeding.horse_id = horse_id
-        delete_feeding.save()
-    return redirect('horse-detail', horse_id=horse_id)
+    # def get_success_url(self):
+    #     horse_pk = self.object.horse.pk
+    #     return reverse('horse-detail', kwargs={'horse_id': horse_pk})
 
 
 def signup(request):
